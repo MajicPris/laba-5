@@ -1,20 +1,100 @@
-#include <iostream>
+#include<iostream>
+#include<conio.h>
+
 using namespace std;
- 
-int main(int argc, char* argv[])
+
+class LA
 {
-    int var1 = 123; // инициализация переменной var1 числом 123
-    int var2 = 99; // инициализация переменной var2 числом 99
-    int *ptrvar1 = &var1; // указатель на переменную var1
-    int *ptrvar2 = &var2; // указатель на переменную var2
-    cout << "var1    = " << var1 << endl;
-    cout << "var2    = " << var2 << endl;
-    cout << "ptrvar1 = " << ptrvar1 << endl;
-    cout << "ptrvar2 = " << ptrvar2 << endl;
-    if (ptrvar1 > ptrvar2) // сравниваем значения указателей, то есть адреса переменных
-        cout << "ptrvar1 > ptrvar2" << endl;
-    if (*ptrvar1 > *ptrvar2) // сравниваем значения переменных, на которые ссылаются указатели
-        cout << "*ptrvar1 > *ptrvar2" << endl;
-    system("pause");
-    return 0;
+protected:
+	char model[64];
+	int aEngine;
+	int power;
+public:
+	LA(char *, int, int);
+	virtual void ShowLA(void);
+	void SetPowerandaEngines();
+};
+
+LA::LA(char *model, int aEngine, int power)
+{
+	strcpy_s(LA::model, model);
+	LA::aEngine = aEngine;
+	LA::power = power;
+}
+
+void LA::ShowLA()
+{
+	cout << endl;
+	cout << "Model: " << model << endl;
+	cout << "Number of air-Engines: " << aEngine << endl;
+	cout << "power: " << power << endl;
+}
+
+void LA::SetPowerandaEngines()
+{
+	cout << "Enter a power: ";
+	cin >> power;
+	cout << "Enter a number of air-Engines: ";
+	cin >> aEngine;
+}
+//AIRPLANE
+class Airplane : public LA
+{
+	int Number;
+public:
+	Airplane(char *, int, int, int);
+	virtual void ShowLA();
+	void SetModelAndNumber(void);
+};
+
+Airplane::Airplane(char *model, int aEngine, int power, int Number) : LA(model, aEngine, power)
+{
+Airplane:Number = Number;
+}
+
+void Airplane::ShowLA(void)
+{
+	cout << endl;
+	LA::ShowLA();
+	cout << "Number of places in Airplane: " << Number << endl;
+}
+
+void Airplane::SetModelAndNumber(void)
+{
+	cout << endl << "Enter a model of Airplane: ";
+	cin.get();
+	cin.getline(model, 64);
+	//gets(model);
+	cout << "Enter a number of places: ";
+	cin >> Number;
+}
+//CHOPPER
+class Chopper : public LA
+{
+	int Number;
+public:
+	Chopper(char *, int, int, int);
+	virtual void ShowLA(void);
+	void SetModelAndNumber(void);
+};
+
+Chopper::Chopper(char *model, int aEngine, int power, int Number) : LA(model, aEngine, power)
+{
+	Chopper::Number = Number;
+}
+
+void Chopper::SetModelAndNumber(void)
+{
+	cout << endl << "Enter a model of Chopper: ";
+	cin.get();
+	cin.getline(model, 64);
+	//gets(model);
+	cout << "Enter a number of places: ";
+	cin >> Number;
+}
+void Chopper::ShowLA(void)
+{
+	cout << endl;
+	LA::ShowLA();
+	cout << "Number of places in Chopper: " << Number << endl;
 }
