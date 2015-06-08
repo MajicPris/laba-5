@@ -8,12 +8,12 @@ int main()
 {
 	//LA l("Boing 777", 8, 512);
 	Chopper c("Raptor", 2, 300, 5);
-	c.ShowChopper();
+	c.ShowLA();
 	c.SetModelAndNumber();
 	c.SetPowerandaEngines();
 	c.ShowLA();
 	Airplane a("Boing 777", 8, 512, 5);
-	a.ShowAirplane();
+	a.ShowLA();
 	a.SetModelAndNumber();
 	a.SetPowerandaEngines();
 	a.ShowLA();
